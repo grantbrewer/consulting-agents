@@ -13,7 +13,7 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, asdict
 from pathlib import Path
-import openai
+import anthropic
 from enum import Enum
 
 class AgentRole(Enum):
@@ -47,7 +47,7 @@ class BaseAgent:
         self.api_key = api_key
         self.company_name = company_name
         self.project_dir = project_dir
-        self.client = openai.OpenAI(api_key=api_key)
+        self.client = anthropic.Anthropic(api_key=api_key)
         self.output_dir = project_dir / "agent_outputs" / role.value
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
@@ -131,19 +131,19 @@ class BusinessModelAnalyst(BaseAgent):
             dependency_outputs_section=f'Dependency Outputs: {chr(10).join(dependency_outputs)}' if dependency_outputs else ''
         )
         
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("business_model_analyst"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("business_model_analyst")
+            ]
         )
-        
+
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],
@@ -180,19 +180,19 @@ class MarketResearcher(BaseAgent):
             dependency_outputs_section=f'Dependency Outputs: {chr(10).join(dependency_outputs)}' if dependency_outputs else ''
         )
         
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("market_researcher"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("market_researcher")
+            ]
         )
-        
+
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],
@@ -223,19 +223,19 @@ class CompetitiveAnalyst(BaseAgent):
             dependency_outputs_section=f'Dependency Outputs: {chr(10).join(dependency_outputs)}' if dependency_outputs else ''
         )
 
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("competitive_analyst"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("competitive_analyst")
+            ]
         )
 
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],
@@ -265,19 +265,19 @@ class FinancialAnalyst(BaseAgent):
             dependency_outputs_section=f'Dependency Outputs: {chr(10).join(dependency_outputs)}' if dependency_outputs else ''
         )
 
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("financial_analyst"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("financial_analyst")
+            ]
         )
 
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],
@@ -307,19 +307,19 @@ class RiskAssessor(BaseAgent):
             dependency_outputs_section=f'Dependency Outputs: {chr(10).join(dependency_outputs)}' if dependency_outputs else ''
         )
 
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("risk_assessor"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("risk_assessor")
+            ]
         )
 
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],
@@ -350,19 +350,19 @@ class StrategyStoryteller(BaseAgent):
             dependency_outputs_section=f"Dependencies: {', '.join(dependencies or [])}\n\n{chr(10).join(dependency_outputs)}" if dependency_outputs else ''
         )
 
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("strategy_storyteller"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("strategy_storyteller")
+            ]
         )
-        
+
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],
@@ -393,19 +393,19 @@ class ImplementationSpecialist(BaseAgent):
             dependency_outputs_section=f'Dependency Outputs: {chr(10).join(dependency_outputs)}' if dependency_outputs else ''
         )
 
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("implementation_specialist"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("implementation_specialist")
+            ]
         )
 
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],
@@ -436,19 +436,19 @@ class SeniorPartner(BaseAgent):
             dependency_outputs_section=f"Dependencies: {', '.join(dependencies or [])}\n\n{chr(10).join(dependency_outputs)}" if dependency_outputs else ''
         )
 
-        response = self.client.chat.completions.create(
+        response = self.client.messages.create(
             model=prompt_manager.get_model_name(),
+            max_tokens=prompt_manager.get_agent_token_limit("senior_partner"),
+            system=system_prompt,
             messages=[
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            max_completion_tokens=prompt_manager.get_agent_token_limit("senior_partner")
+            ]
         )
 
         output = AgentOutput(
             agent_role=self.role.value,
             company_name=self.company_name,
-            output_content=response.choices[0].message.content,
+            output_content=response.content[0].text,
             timestamp=datetime.now().isoformat(),
             parameters_used=parameters,
             dependencies=dependencies or [],

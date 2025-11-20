@@ -30,7 +30,8 @@ wheels/
 # IDE
 .vscode/
 .idea/
-.claude/
+.claude/settings.local.json
+.claude/settings.json
 *.swp
 *.swo
 *~

@@ -3,7 +3,7 @@
 
 # Global Configuration
 global:
-  model: "gpt-5"
+  model: "claude-sonnet-4-20250514"  # Migrated from GPT-5 to Claude Sonnet 4
   max_completion_tokens: 4000
   default_max_tokens: 5000
   

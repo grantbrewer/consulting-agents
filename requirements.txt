@@ -1,6 +1,6 @@
 # Multi-Agent Strategy Consulting Team Dependencies
-# Core OpenAI API client
-openai>=1.0.0
+# Core Anthropic API client (migrated from OpenAI)
+anthropic>=0.40.0
 
 # Standard library packages (included with Python 3.7+)
 # pathlib - Path handling

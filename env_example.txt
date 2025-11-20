@@ -1,9 +1,12 @@
 # Environment variables for the Consulting Agents system
 # Copy this file to .env and fill in your actual values
 
-# OpenAI API Configuration
-OPENAI_API_KEY=your-openai-api-key-here
-OPENAI_API_BASE=https://api.openai.com/v1  # Optional: for custom endpoints
+# Anthropic API Configuration (migrated from OpenAI)
+ANTHROPIC_API_KEY=your-anthropic-api-key-here
+
+# Legacy OpenAI Configuration (for backward compatibility if needed)
+# OPENAI_API_KEY=your-openai-api-key-here
+# OPENAI_API_BASE=https://api.openai.com/v1
 
 # Project Configuration
 PROJECT_OUTPUT_DIR=./consulting_projects
