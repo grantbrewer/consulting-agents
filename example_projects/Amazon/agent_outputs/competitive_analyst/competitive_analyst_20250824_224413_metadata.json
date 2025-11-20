@@ -1,0 +1,24 @@
+{
+  "agent_role": "competitive_analyst",
+  "company_name": "Amazon",
+  "output_content": "",
+  "timestamp": "2025-08-24T22:44:13.694408",
+  "parameters_used": {
+    "analysis_brief": "Analyze Amazon's diversification strategy across e-commerce, cloud computing, and other business segments. Focus on ecosystem strategy and competitive moats.",
+    "engagement_type": "focused_strategic_analysis",
+    "analysis_depth": "executive_level",
+    "deliverables": [
+      "business_model_analysis",
+      "market_research",
+      "competitive_analysis",
+      "strategy_narrative",
+      "senior_partner_review"
+    ],
+    "focus_areas": [
+      "ecosystem_strategy"
+    ]
+  },
+  "dependencies": [],
+  "status": "completed",
+  "file_path": "example_projects/Amazon/agent_outputs/competitive_analyst/competitive_analyst_20250824_224413.md"
+}

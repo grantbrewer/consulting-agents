@@ -1,0 +1,28 @@
+# Multi-Agent Strategy Consulting Team Dependencies
+# Core OpenAI API client
+openai>=1.0.0
+
+# Standard library packages (included with Python 3.7+)
+# pathlib - Path handling
+# json - JSON processing  
+# argparse - Command line argument parsing
+# datetime - Date and time handling
+# asyncio - Asynchronous programming support
+# dataclasses - Data class support
+# enum - Enumeration support
+
+# Additional useful packages for enhanced functionality
+# requests - HTTP library for potential future API integrations
+requests>=2.31.0
+
+# rich - Beautiful terminal output and progress bars
+rich>=13.0.0
+
+# python-dotenv - Environment variable management
+python-dotenv>=1.0.0
+
+# PyYAML - YAML configuration file support
+pyyaml>=6.0.0
+
+# pydantic - Data validation (optional, for enhanced type safety)
+pydantic>=2.0.0

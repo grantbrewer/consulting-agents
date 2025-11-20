@@ -1,0 +1,24 @@
+{
+  "agent_role": "market_researcher",
+  "company_name": "Microsoft",
+  "output_content": "",
+  "timestamp": "2025-08-24T22:52:01.771271",
+  "parameters_used": {
+    "analysis_brief": "Evaluate Microsoft's enterprise software strategy and cloud transformation approach. Focus on enterprise positioning and cloud strategy.",
+    "engagement_type": "focused_strategic_analysis",
+    "analysis_depth": "executive_level",
+    "deliverables": [
+      "business_model_analysis",
+      "market_research",
+      "competitive_analysis",
+      "strategy_narrative",
+      "senior_partner_review"
+    ],
+    "focus_areas": [
+      "enterprise_cloud_strategy"
+    ]
+  },
+  "dependencies": [],
+  "status": "completed",
+  "file_path": "example_projects/Microsoft/agent_outputs/market_researcher/market_researcher_20250824_225313.md"
+}

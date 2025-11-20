@@ -1,0 +1,24 @@
+{
+  "agent_role": "competitive_analyst",
+  "company_name": "Netflix",
+  "output_content": "",
+  "timestamp": "2025-08-24T23:44:16.693066",
+  "parameters_used": {
+    "analysis_brief": "Analyze Netflix's strategy in the streaming wars, including competitive positioning, content strategy, and recommendations for maintaining market leadership",
+    "engagement_type": "comprehensive_strategic_analysis",
+    "analysis_depth": "executive_level",
+    "deliverables": [
+      "business_model_analysis",
+      "market_research",
+      "competitive_analysis",
+      "financial_analysis",
+      "risk_assessment",
+      "implementation_plan",
+      "strategy_narrative",
+      "senior_partner_review"
+    ]
+  },
+  "dependencies": [],
+  "status": "completed",
+  "file_path": "example_projects/Netflix/agent_outputs/competitive_analyst/competitive_analyst_20250824_234416.md"
+}

@@ -1,0 +1,24 @@
+# Environment variables for the Consulting Agents system
+# Copy this file to .env and fill in your actual values
+
+# OpenAI API Configuration
+OPENAI_API_KEY=your-openai-api-key-here
+OPENAI_API_BASE=https://api.openai.com/v1  # Optional: for custom endpoints
+
+# Project Configuration
+PROJECT_OUTPUT_DIR=./consulting_projects
+DEFAULT_ANALYSIS_DEPTH=executive_level
+DEFAULT_ENGAGEMENT_TYPE=comprehensive_strategic_analysis
+
+# API Rate Limiting (optional)
+OPENAI_RATE_LIMIT_REQUESTS_PER_MINUTE=60
+OPENAI_RATE_LIMIT_TOKENS_PER_MINUTE=150000
+
+# Logging Configuration
+LOG_LEVEL=INFO
+LOG_FILE=consulting_agents.log
+
+# Example usage:
+# 1. Copy this file: cp env_example.txt .env
+# 2. Edit .env and add your OpenAI API key
+# 3. The system will automatically load these variables
